@@ -1,6 +1,6 @@
-# Gumby Framework - Ruby On Rails gem
+# Gumby Framework - RoR gem
 
-[Gumby Framework](http://gumbyframework.com/) for Rails asset pipeline. Based on Gumby Framework 2.
+[Gumby Framework](http://gumbyframework.com/) gem for Rails asset pipeline. Based on Gumby Framework 2.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-You will need to add also the <code>modernizr-rails</code> gem to your gemfile:
+You will need to add also the <code>jquery-rails</code> and <code>modernizr-rails</code>  gem to your gemfile:
 
 	# Gemfile
 
@@ -43,6 +43,7 @@ Add this line at the end of your application.css
 You will need to add jquery and modernizr and global Gumby object in your application.js:
 
 	//= require jquery
+	//= require jquery_ujs
 	//= require modernizr
 	//= require gumby
 
