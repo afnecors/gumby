@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["afnecors@gmail.com"]
   gem.description   = %q{Gumby Framework for Rails}
   gem.summary       = %q{Gumby Framework for Rails}
-  gem.homepage      = "http://rubygems.org/gems/hola"
+  gem.homepage      = "http://rubygems.org/gems/gumby"
 
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["lib"]
