@@ -65,7 +65,7 @@ html, body { height: 100%; }
 .text-right { text-align: right; }
 
 /* Fonts */
-@font-face { font-family: "entypo"; font-style: normal; font-weight: 400; src: url(/assets/fonts/icons/entypo.eot); src: url("/assets/fonts/icons/entypo.eot?#iefix") format("ie9-skip-eot"), url("/assets/fonts/icons/entypo.woff") format("woff"), url("/assets/fonts/icons/entypo.ttf") format("truetype"); }
+@font-face { font-family: "entypo"; font-style: normal; font-weight: 400; src: url(/assets/icons/entypo.eot); src: url("/assets/icons/entypo.eot?#iefix") format("ie9-skip-eot"), url("/assets/icons/entypo.woff") format("woff"), url("/assets/icons/entypo.ttf") format("truetype"); }
 
 h1, h2, h3, h4, h5, h6 { font-family: "Open Sans"; font-weight: 300; color: #444444; text-rendering: optimizeLegibility; padding-top: 0.273em; line-height: 1.15538em; padding-bottom: 0.273em; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #d04526; }
