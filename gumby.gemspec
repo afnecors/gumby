@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Gumby Framework for Rails}
   gem.summary       = %q{Gumby Framework for Rails}
   gem.homepage      = "http://rubygems.org/gems/gumby"
-
+  gem.license	    = 'MIT'
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["lib"]
 
