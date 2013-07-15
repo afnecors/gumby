@@ -36,11 +36,7 @@ You will need to add also this tag to your HTML head tag:
 
 Add this line at the end of your application.css
 
-	*= require gumby 
-
-or
-
-	*= require gumby.min
+	*= require gumby
 	
 #### Javascript
 
