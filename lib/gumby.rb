@@ -1,7 +1,7 @@
 require "gumby/version"
 
 module Gumby
-  module Rails
+  module Framework
     class Engine < ::Rails::Engine
     end
   end

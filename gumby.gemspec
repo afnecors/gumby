@@ -5,7 +5,7 @@ require "gumby/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "gumby"
-  gem.version       = Gumby::Rails::VERSION
+  gem.version       = Gumby::Framework::VERSION
   gem.authors       = ["Francesco Serra"]
   gem.email         = ["afnecors@gmail.com"]
   gem.description   = %q{Gumby Framework for Rails}
