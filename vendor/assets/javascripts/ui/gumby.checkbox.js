@@ -12,18 +12,7 @@
 
 		// listen for click event and custom gumby check/uncheck events
 		this.$el.on(Gumby.click, function(e) {
-			// prevent propagation
-			e.stopImmediatePropagation();
-
-			// prevent checkbox checking, we'll do that manually
-			e.preventDefault();
-
-			// check/uncheck
-			if(scope.$el.hasClass('checked')) {
-				scope.update(false);
-			} else {
-				scope.update(true);
-			}
+			scope.click(e);
 		}).on('gumby.check', function() {
 			scope.update(true);
 		}).on('gumby.uncheck', function() {
@@ -36,24 +25,37 @@
 		}
 	}
 
+	// handle checkbox click event
+	Checkbox.prototype.click = function(e) {
+
+		// element responsible for event trigger
+		var $target = $(e.target);
+
+		// prevent propagation
+		e.stopPropagation();
+
+		// prevent checkbox checking, we'll do that manually
+		e.preventDefault();
+
+		// check/uncheck
+		if(this.$el.hasClass('checked')) {
+			this.update(false);
+		} else {
+			this.update(true);
+		}
+	};
+
 	// update checkbox, check equals true/false to sepcify check/uncheck
 	Checkbox.prototype.update = function(check) {
-
-		var $input = this.$el.find('input'),
-			$span = this.$el.find('span');
-
 		// check checkbox - check input, add checked class, append <i>
 		if(check) {
-
-			$span.append('<i class="icon-check" />');
-
-			$input.prop('checked', true).end()
-				.addClass('checked')
+			this.$el.find('input').attr('checked', true).end()
+				.addClass('checked').append('<i class="icon-check" />')
 				.trigger('gumby.onCheck').trigger('gumby.onChange');
 
 		// uncheck checkbox - uncheck input, remove checked class, remove <i>
 		} else {
-			$input.prop('checked', false).end()
+			this.$el.find('input').attr('checked', false).end()
 				.find('i').remove().end()
 				.removeClass('checked').trigger('gumby.onUncheck').trigger('gumby.onChange');
 		}

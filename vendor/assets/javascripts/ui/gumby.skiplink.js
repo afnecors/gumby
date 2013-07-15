@@ -6,49 +6,27 @@
 	'use strict';
 
 	function SkipLink($el) {
-		this.$el = $el;
-		this.targetPos = 0;
-		this.duration = 0;
-		this.offset = false;
-		this.easing = '';
-		this.update = false;
 
-		// set up module based on attributes
-		this.setup();
+		this.$el = $el;
+		this.animateElement = $.browser.webkit ? 'body' : 'html';
+		this.targetPos = 0;
+		this.duration = Number(Gumby.selectAttr.apply(this.$el, ['duration'])) || 200;
+		this.offset = Gumby.selectAttr.apply(this.$el, ['offset']) || false;
+		this.easing = Gumby.selectAttr.apply(this.$el, ['easing']) || 'swing';
 
 		var scope = this;
 
 		// skip to target element on click or trigger of gumby.skipTo event
 		this.$el.on(Gumby.click+' gumby.skip', function(e) {
-
-			e.stopImmediatePropagation();
 			e.preventDefault();
-
-			// calculate target on each click if update var set to true
-			if(scope.update) {
-				scope.calculateTarget(scope.skipTo);
-
-			// skip straight to target
-			} else {
-				scope.skipTo();
-			}
-		}).on('gumby.initialize', function() {
-			scope.setup();
+			// calculate target on each click
+			// other UI interactions could effect this
+			scope.calculateTarget();
 		});
 	}
 
-	// set up module based on attributes
-	SkipLink.prototype.setup = function() {
-		this.duration = Number(Gumby.selectAttr.apply(this.$el, ['duration'])) || 200;
-		this.offset = Gumby.selectAttr.apply(this.$el, ['offset']) || false;
-		this.easing = Gumby.selectAttr.apply(this.$el, ['easing']) || 'swing';
-		this.update = Gumby.selectAttr.apply(this.$el, ['update']) ? true : false;
-
-		this.calculateTarget();
-	};
-
 	// calculate target px point to skip to
-	SkipLink.prototype.calculateTarget = function(cb) {
+	SkipLink.prototype.calculateTarget = function() {
 
 		var scope = this,
 			target = Gumby.selectAttr.apply(this.$el, ['goto']),
@@ -74,9 +52,8 @@
 			this.targetPos = $target.offset().top;
 		}
 
-		if(cb) {
-			cb.apply(this);
-		}
+		// skip to target
+		this.skipTo();
 	};
 
 	// animate body, html scrollTop value to target px point
@@ -84,9 +61,9 @@
 		var scope = this;
 
 		// slide to position of target
-		$('html,body').animate({
+		$(scope.animateElement).animate({
 			'scrollTop' : this.calculateOffset()
-		}, this.duration, this.easing).promise().done(function() {
+		}, this.duration, this.easing, function() {
 			scope.$el.trigger('gumby.onComplete');
 		});
 	};
@@ -112,22 +89,13 @@
 	};
 
 	// add initialisation
-	Gumby.addInitalisation('skiplinks', function(all) {
+	Gumby.addInitalisation('skiplinks', function() {
 		$('.skiplink > a, .skip').each(function() {
 			var $this = $(this);
-
 			// this element has already been initialized
-			// and we're only initializing new modules
-			if($this.data('isSkipLink') && !all) {
-				return true;
-
-			// this element has already been initialized
-			// and we need to reinitialize it
-			} else if($this.data('isSkipLink') && all) {
-				$this.trigger('gumby.initialize');
+			if($this.data('isSkipLink')) {
 				return true;
 			}
-
 			// mark element as initialized
 			$this.data('isSkipLink', true);
 			new SkipLink($this);
