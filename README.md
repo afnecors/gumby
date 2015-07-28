@@ -61,7 +61,7 @@ After this line, you can add the Gumby JS plugins; you have available the follow
 
 Finally, add initialize JS.
 
-  //= require gumby.init
+	//= require gumby.init
 
 ## Contributing
 
