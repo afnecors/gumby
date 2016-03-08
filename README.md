@@ -1,4 +1,5 @@
 # Gumby Framework - RoR gem
+![unmaintained](http://img.shields.io/badge/status-unmaintained-red.png)
 
 [Gumby Framework](http://gumbyframework.com/) gem for Rails asset pipeline. Based on Gumby Framework 2.
 
